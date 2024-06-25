@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:yummyrecipe/hive%20operation/wish_list_hive.dart';
 import 'package:yummyrecipe/screens/Detail_Screen/Detail_scree_explore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
 
 class RecipeGridItem extends StatelessWidget {
   final Map<String, dynamic> snap;
@@ -12,6 +15,7 @@ class RecipeGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
     int time = snap['totalTime'].toInt();
+    var wishlistBox = Hive.box('wishlist');
 
     return GestureDetector(
       onTap: () {
@@ -62,6 +66,44 @@ class RecipeGridItem extends StatelessWidget {
                         ),
                       ),
                     ),
+                  // Add wishlist button in the top right corner
+                  Positioned(
+                    top: 7,
+                    right: 15,
+                    child: ValueListenableBuilder(
+                      valueListenable: wishlistBox.listenable(),
+                      builder: (context, Box box, _) {
+                        String key = snap['label'];
+                        bool isInWishlist = WishlistHive.isRecipeInWishlist(key);
+                        return GestureDetector(
+                          onTap: () async {
+                            if (isInWishlist) {
+                              await WishlistHive.removeRecipeFromWishlist(key);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Removed from Wishlist')),
+                              );
+                            } else {
+                              await WishlistHive.addRecipeToWishlist(key, snap);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  duration: Duration(seconds: 1),
+                                  content: Text('Added to Wishlist'),
+                                ),
+                              );
+                            }
+                          },
+                          child: CircleAvatar(
+                            radius: w * 0.06,
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              isInWishlist ? Icons.favorite : Icons.favorite_border,
+                              color: Colors.red,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),

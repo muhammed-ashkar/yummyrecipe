@@ -46,6 +46,26 @@ class IngredientItem extends StatelessWidget {
               width: w * .2,
               height: h * .1,
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/vegetable.jpg',
+                      width: w * .2,
+                      height: h * .1,
+                      fit: BoxFit.cover,
+                    ),
+                    Text(
+                      'Showing Soon',
+                      style: TextStyle(
+                        fontSize: w * .03,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
           SizedBox(width: w * .033),
@@ -57,6 +77,8 @@ class IngredientItem extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1,
               ),
+              overflow: TextOverflow.ellipsis, // Handle overflow text
+              maxLines: 2, // Limit the number of lines
             ),
           ),
           ValueListenableBuilder(
