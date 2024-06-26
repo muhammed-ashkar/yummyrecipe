@@ -15,12 +15,12 @@ class WishlistScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title:const  Text("Wishlist"),
-        backgroundColor: Colors.orange, // Set the background color to orange
+        title: const Text("Wishlist"),
+        backgroundColor: Colors.orange,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>const  Home()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home()));
           },
         ),
       ),
@@ -51,11 +51,11 @@ class WishlistScreen extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                   trailing: IconButton(
-                    icon:const  Icon(Icons.delete, color: Colors.red),
+                    icon: const Icon(Icons.delete, color: Colors.red),
                     onPressed: () {
                       box.delete(key);
                       ScaffoldMessenger.of(context).showSnackBar(
-                       const  SnackBar(content: Text('Removed from Wishlist')),
+                        const SnackBar(content: Text('Removed from Wishlist')),
                       );
                     },
                   ),

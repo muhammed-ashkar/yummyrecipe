@@ -3,7 +3,8 @@ import 'package:yummyrecipe/constants/start_cooking.dart';
 import 'package:yummyrecipe/screens/Detail_Screen/buttons_row.dart';
 import 'package:yummyrecipe/screens/Detail_Screen/header_section.dart';
 import 'package:yummyrecipe/screens/Detail_Screen/ingredient_List.dart';
-import 'package:yummyrecipe/screens/saved_screen.dart';
+import 'package:yummyrecipe/screens/wish_list.dart';
+
 
 class DetailScreen extends StatefulWidget {
   final Map<String, dynamic> item;
@@ -17,7 +18,7 @@ class DetailScreen extends StatefulWidget {
   static void navigateToSaved(BuildContext context) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => SavedScreen()),
+      MaterialPageRoute(builder: (context) => const WishlistScreen()),
     );
   }
 }

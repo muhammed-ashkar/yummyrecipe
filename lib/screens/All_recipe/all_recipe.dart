@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yummyrecipe/compponents/custom_app_bar.dart';
 import 'package:yummyrecipe/constants/constant_function.dart';
+import 'package:yummyrecipe/screens/Detail_Screen/Detail_scree_explore.dart';
 import 'package:yummyrecipe/screens/All_recipe/recipe_grid.dart';
 
 class AllRecipeScreen extends StatelessWidget {
@@ -16,9 +17,9 @@ class AllRecipeScreen extends StatelessWidget {
       appBar: CustomAppBar(title: recipe, back: 'true'),
       body: FutureBuilder(
         future: constantFunction.getResponse(recipe),
-        builder: (context, snapshot) {
+        builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
+            return Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
@@ -26,11 +27,18 @@ class AllRecipeScreen extends StatelessWidget {
               child: Text('Error: ${snapshot.error}'),
             );
           } else if (!snapshot.hasData || snapshot.data == null || !(snapshot.data is List)) {
-            return const Center(
-              child: Text('No data or invalid data format'),
+            return Center(
+              child: Text('Sorry no search results found'),
             );
           }
+
           final List<Map<String, dynamic>> recipes = snapshot.data as List<Map<String, dynamic>>;
+          if (recipes.isEmpty) {
+            return Center(
+              child: Text('Sorry no search results found'),
+            );
+          }
+
           return Padding(
             padding: EdgeInsets.only(
               right: w * .034,
@@ -38,17 +46,16 @@ class AllRecipeScreen extends StatelessWidget {
               top: h * .03,
             ),
             child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                childAspectRatio: 0.7, // Adjusted to better fit the image and text
+                childAspectRatio: 0.7,
               ),
               itemCount: recipes.length,
               itemBuilder: (context, index) {
                 Map<String, dynamic> snap = recipes[index];
-                return RecipeGridItem(snap: snap, w: MediaQuery.of(context).size.width);
-
+                return RecipeGridItem(snap: snap, w: w);
               },
             ),
           );

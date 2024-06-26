@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:yummyrecipe/screens/Home%20Page/home.dart';  
 
 class HeaderSection extends StatelessWidget {
   final Map<String, dynamic> item;
@@ -31,10 +30,7 @@ class HeaderSection extends StatelessWidget {
             child: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const Home())
-                );
+                Navigator.pop(context); // This ensures it navigates back to the previous screen
               },
               color: Colors.white,
             ),

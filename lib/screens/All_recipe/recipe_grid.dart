@@ -40,8 +40,8 @@ class RecipeGridItem extends StatelessWidget {
                     child: CachedNetworkImage(
                       imageUrl: snap['image'],
                       fit: BoxFit.cover,
-                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red),
+                      placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => Icon(Icons.error, color: Colors.red),
                     ),
                   ),
                   if (time > 0)
@@ -58,14 +58,13 @@ class RecipeGridItem extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "$time min",
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.white,
                             ),
                           ),
                         ),
                       ),
                     ),
-                  // Add wishlist button in the top right corner
                   Positioned(
                     top: 7,
                     right: 15,
@@ -79,12 +78,12 @@ class RecipeGridItem extends StatelessWidget {
                             if (isInWishlist) {
                               await WishlistHive.removeRecipeFromWishlist(key);
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Removed from Wishlist')),
+                                SnackBar(content: Text('Removed from Wishlist')),
                               );
                             } else {
                               await WishlistHive.addRecipeToWishlist(key, snap);
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                SnackBar(
                                   duration: Duration(seconds: 1),
                                   content: Text('Added to Wishlist'),
                                 ),
@@ -118,7 +117,7 @@ class RecipeGridItem extends StatelessWidget {
                   snap['label'],
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: w * 0.04, // Using the 'w' parameter passed from the parent widget
+                    fontSize: w * 0.04,
                   ),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
