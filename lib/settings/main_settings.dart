@@ -11,7 +11,7 @@ class SettingsPage extends StatelessWidget {
         backgroundColor: Colors.orange,
       ),
       body: Container(
-        color: Colors.lightBlue[50], // Light blue background color
+        color: Colors.lightBlue[50], 
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(
