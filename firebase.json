@@ -1,0 +1,39 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "yummyrecipe-32af9",
+          "appId": "1:264102334731:android:af6e1378e5bcd3e10e920e",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "yummyrecipe-32af9",
+          "configurations": {
+            "android": "1:264102334731:android:af6e1378e5bcd3e10e920e",
+            "ios": "1:264102334731:ios:a36c3c0c1ccd0ed10e920e",
+            "macos": "1:264102334731:ios:a36c3c0c1ccd0ed10e920e",
+            "web": "1:264102334731:web:802dfdca374d04d40e920e",
+            "windows": "1:264102334731:web:adbf0287d00d81420e920e"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

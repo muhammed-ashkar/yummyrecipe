@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "264102334731",
+    "project_id": "yummyrecipe-32af9",
+    "storage_bucket": "yummyrecipe-32af9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264102334731:android:af6e1378e5bcd3e10e920e",
+        "android_client_info": {
+          "package_name": "com.example.yummyrecipe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXGCIkvc8UghKJK2PDrg4jhXqx-OtRftg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
